@@ -17,31 +17,28 @@ namespace Business.Concrete
         {
             _iCarDal= iCarDal;
         }
-        public void Add(Car car)
-        {
-            //Console.WriteLine( car.Description + "Eklendi." );
-            _iCarDal.Add(car);
-
-        }
-
-        public Car GetById(int id)
-        {
-           return _iCarDal.GetById(id);
-        }
-
-        public void Delete(Car car)
-        {
-            _iCarDal.Delete(car);
-        }
-
+       
         public List<Car> GetAll()
         {
             return _iCarDal.GetAll();
         }
 
-        public void Update(Car car)
+        public List<Car> GetCarsByBrandId(int id)
         {
-            _iCarDal.Update(car);
+            return _iCarDal.GetAll(p => p.BrandId == id);
+        }
+
+        public List<Car> GetCarsByColorId(int id)
+        {
+            return _iCarDal.GetAll(p=>p.ColorId==id);
+        }
+        public void Add(Car car)
+        {
+            if(car.Description.Length>=2 && car.DailyPrice>0)
+            {
+                _iCarDal.Add(car);
+            }
+            else { Console.WriteLine("Araç ekleme şartı sağlanamadı."); }
         }
     }
 }
