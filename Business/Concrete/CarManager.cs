@@ -37,6 +37,7 @@ namespace Business.Concrete
             if(car.Description.Length>=2 && car.DailyPrice>0)
             {
                 _iCarDal.Add(car);
+                Console.WriteLine("Başarıyla eklendi.");
             }
             else { Console.WriteLine("Araç ekleme şartı sağlanamadı."); }
         }
